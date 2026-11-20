@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createRng, randInt } from '../../../core/rng';
 import { MAX_WORD_LEN, MIN_WORD_LEN, WORDS_PER_PUZZLE } from '../types';
-import { createWordPool, wordsNeeded } from './select';
+import { EASTER_EGG_WORD, createWordPool, wordsNeeded } from './select';
 
 /** Length weights for 4..12, skewed towards 5-8 letters. */
 const LENGTH_WEIGHTS = [10, 20, 22, 18, 12, 8, 5, 3, 2];
@@ -61,16 +61,22 @@ describe('createWordPool', () => {
     const pool = createWordPool(makeFixture(1500));
     const rng = createRng(7);
     const seen = new Set<string>();
+    let eggs = 0;
     for (let i = 0; i < 50; i++) {
       const set = pool.drawSet(rng);
       checkSet(set);
       for (const w of set) {
+        // The easter egg word is not drawn from the pool and may repeat across sets.
+        if (w === EASTER_EGG_WORD) {
+          eggs++;
+          continue;
+        }
         expect(seen.has(w)).toBe(false);
         seen.add(w);
       }
     }
-    expect(seen.size).toBe(600);
-    expect(pool.remaining()).toBe(900);
+    expect(seen.size).toBe(600 - eggs);
+    expect(pool.remaining()).toBe(900 + eggs);
   });
 
   it('is deterministic for a given seed', () => {
@@ -143,5 +149,32 @@ describe('createWordPool', () => {
       for (let j = 0; j < 20; j++) checkSet(pool.drawSet(rng));
     }
     expect(performance.now() - start).toBeLessThan(2000);
+  });
+});
+
+describe('Nikhil easter egg', () => {
+  it('seeds about 5% of sets with NIKHIL while keeping every set rule', () => {
+    const rng = createRng(99);
+    const pool = createWordPool(makeFixture(4000));
+    const trials = 2000;
+    let hits = 0;
+    for (let i = 0; i < trials; i++) {
+      const set = pool.drawSet(rng);
+      checkSet(set);
+      if (set.includes(EASTER_EGG_WORD)) hits++;
+      pool.release(set);
+    }
+    expect(hits / trials).toBeGreaterThan(0.03);
+    expect(hits / trials).toBeLessThan(0.07);
+  });
+
+  it('does not duplicate NIKHIL when the bank already contains it', () => {
+    const rng = createRng(5);
+    const pool = createWordPool([...makeFixture(500), EASTER_EGG_WORD]);
+    for (let i = 0; i < 300; i++) {
+      const set = pool.drawSet(rng);
+      checkSet(set);
+      pool.release(set);
+    }
   });
 });
