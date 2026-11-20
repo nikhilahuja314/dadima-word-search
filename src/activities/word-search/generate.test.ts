@@ -3,6 +3,7 @@ import { MAX_PUZZLES, WORDS_PER_PUZZLE } from './types';
 import { generatePuzzles } from './generate';
 import blocklistData from './grid/blocklist.json';
 import { validatePuzzle } from './grid/fill';
+import { EASTER_EGG_WORD } from './words/select';
 
 const BLOCKLIST: ReadonlySet<string> = new Set(blocklistData as string[]);
 
@@ -16,12 +17,15 @@ describe('generatePuzzles', () => {
       expect(p.words).toEqual(p.words.toSorted());
       expect(p.placements).toHaveLength(WORDS_PER_PUZZLE);
       for (const w of p.words) {
+        // The easter egg word may legitimately appear in more than one puzzle.
+        if (w === EASTER_EGG_WORD) continue;
         expect(seen.has(w)).toBe(false);
         seen.add(w);
       }
       expect(validatePuzzle(p.grid, p.words, BLOCKLIST)).toEqual({ ok: true });
     }
-    expect(seen.size).toBe(600);
+    const eggs = puzzles.filter((p) => p.words.includes(EASTER_EGG_WORD)).length;
+    expect(seen.size).toBe(600 - eggs);
   });
 
   it('is deterministic per seed and differs across seeds', () => {
