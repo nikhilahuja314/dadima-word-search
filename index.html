@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Search Puzzles for Dadima</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <h1>Word Search Puzzles for Dadima</h1>
+      <p class="intro">Choose how many puzzles, press the button, then print the PDF.</p>
+
+      <div class="field">
+        <label for="count">How many puzzles?</label>
+        <div class="stepper">
+          <button type="button" id="minus" class="step" aria-label="One fewer puzzle">−</button>
+          <input id="count" type="number" inputmode="numeric" min="1" max="50" value="10" />
+          <button type="button" id="plus" class="step" aria-label="One more puzzle">+</button>
+        </div>
+      </div>
+
+      <button type="button" id="make" class="primary">Make puzzles</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <section id="preview" class="preview" hidden>
+        <h2>Here is the first puzzle</h2>
+        <div id="grid" class="grid" aria-hidden="true"></div>
+        <h3>Find these words</h3>
+        <ul id="words" class="words"></ul>
+      </section>
+    </main>
+    <script type="module" src="/src/ui/main.ts"></script>
+  </body>
+</html>
