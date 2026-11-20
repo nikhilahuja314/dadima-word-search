@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_PUZZLES, WORDS_PER_PUZZLE } from './core/types';
+import { MAX_PUZZLES, WORDS_PER_PUZZLE } from './types';
 import { generatePuzzles } from './generate';
 import blocklistData from './grid/blocklist.json';
 import { validatePuzzle } from './grid/fill';

@@ -30,5 +30,4 @@ export interface Puzzle {
   placements: Placement[];
 }
 
-/** Returns a float in [0, 1). */
-export type Rng = () => number;
+export type { Rng } from '../../core/rng';

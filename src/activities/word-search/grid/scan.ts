@@ -1,5 +1,5 @@
-import { DELTA, DIRECTIONS, GRID_SIZE } from '../core/types';
-import type { Grid, Placement } from '../core/types';
+import { DELTA, DIRECTIONS, GRID_SIZE } from '../types';
+import type { Grid, Placement } from '../types';
 
 /** Cell text used to break runs where the grid has an empty ('') cell. */
 const GAP = ' ';

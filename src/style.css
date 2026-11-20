@@ -142,33 +142,76 @@ input:focus-visible {
   border-radius: 1rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  max-width: 28rem;
-  margin: 0 auto;
-  border: 2px solid var(--ink);
+h1:focus {
+  outline: none;
 }
 
-.grid span {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
   font-weight: 700;
-  font-size: clamp(0.9rem, 4.5vw, 1.4rem);
-  border: 1px solid #d9cfbc;
+  color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
-.words {
+.tiles {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  gap: 0.25rem 1rem;
+  gap: 1rem;
+}
+
+.tile {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem;
+  min-height: 6.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: 1rem;
+}
+
+.tile:hover {
+  background: #efe4cc;
+}
+
+.tile:focus-visible,
+.back:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.tile-icon {
+  flex: none;
+  width: 4rem;
+  height: 4rem;
+  color: var(--accent);
+}
+
+.tile-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-title {
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.tile-tagline {
+  color: var(--muted);
 }
 
 @media (max-width: 480px) {

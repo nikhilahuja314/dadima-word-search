@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { GRID_SIZE } from '../core/types';
-import type { Placement } from '../core/types';
-import type { Grid } from '../core/types';
+import { GRID_SIZE } from '../types';
+import type { Placement } from '../types';
+import type { Grid } from '../types';
 import { findBlocklisted, findOccurrences, readableStrings } from './scan';
 
 function blank(ch = ''): Grid {

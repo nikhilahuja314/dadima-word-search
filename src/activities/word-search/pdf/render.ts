@@ -1,10 +1,11 @@
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
-import { GRID_SIZE, type Puzzle } from '../core/types';
+import { A4 } from '../../../core/page';
+import { GRID_SIZE, type Puzzle } from '../types';
 
 /** All layout numbers in points. A4 portrait; pdf-lib origin is bottom-left. */
 export const LAYOUT = {
-  pageWidth: 595.28,
-  pageHeight: 841.89,
+  pageWidth: A4.width,
+  pageHeight: A4.height,
   margin: 42.5,
   gridFontSize: 28,
   /** Baseline sits this fraction of the font size below the cell centre. */

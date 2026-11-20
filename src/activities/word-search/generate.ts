@@ -1,6 +1,6 @@
-import { createRng } from './core/rng';
-import { MAX_PUZZLES } from './core/types';
-import type { Puzzle } from './core/types';
+import { createRng } from '../../core/rng';
+import { MAX_PUZZLES } from './types';
+import type { Puzzle } from './types';
 import blocklistData from './grid/blocklist.json';
 import { fillAndValidate } from './grid/fill';
 import { placeWords } from './grid/place';

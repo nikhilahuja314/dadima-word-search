@@ -1,4 +1,5 @@
-import type { Rng } from './types';
+/** Returns a float in [0, 1). */
+export type Rng = () => number;
 
 /** Seeded PRNG (mulberry32). Same seed gives the same sequence. */
 export function createRng(seed: number): Rng {

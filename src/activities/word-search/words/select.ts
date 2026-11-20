@@ -1,6 +1,6 @@
-import { WORDS_PER_PUZZLE } from '../core/types';
-import type { Rng } from '../core/types';
-import { shuffle } from '../core/rng';
+import { WORDS_PER_PUZZLE } from '../types';
+import type { Rng } from '../types';
+import { shuffle } from '../../../core/rng';
 
 export interface WordPool {
   /** Draw a valid set of WORDS_PER_PUZZLE words, never returning a word used earlier in this pool. */

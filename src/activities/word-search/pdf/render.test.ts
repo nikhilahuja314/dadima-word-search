@@ -1,6 +1,6 @@
 import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { describe, expect, it } from 'vitest';
-import { GRID_SIZE } from '../core/types';
+import { GRID_SIZE } from '../types';
 import { LAYOUT, computeLayout, fitFontSize, renderPdf } from './render';
 import { REALISTIC_WORDS, WIDE_WORDS, fixturePuzzles, makePuzzle } from './render.fixtures';
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { createRng } from '../core/rng';
-import { DELTA, DIRECTIONS, GRID_SIZE, WORDS_PER_PUZZLE } from '../core/types';
-import type { Direction } from '../core/types';
+import { createRng } from '../../../core/rng';
+import { DELTA, DIRECTIONS, GRID_SIZE, WORDS_PER_PUZZLE } from '../types';
+import type { Direction } from '../types';
 import { cellsOf, placeWords } from './place';
 
 const SETS: string[][] = [

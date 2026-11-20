@@ -5,5 +5,13 @@
     "correctness": "error",
     "suspicious": "warn"
   },
-  "ignorePatterns": ["dist/**", "src/words/words.json"]
+  "ignorePatterns": ["dist/**", "src/activities/word-search/words/words.json"],
+  "rules": {
+    "import/no-unassigned-import": [
+      "warn",
+      {
+        "allow": ["**/*.css"]
+      }
+    ]
+  }
 }

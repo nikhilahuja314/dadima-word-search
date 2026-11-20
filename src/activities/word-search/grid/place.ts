@@ -1,6 +1,6 @@
-import { DELTA, DIRECTIONS, GRID_SIZE } from '../core/types';
-import type { Direction, Grid, Placement, Rng } from '../core/types';
-import { shuffle } from '../core/rng';
+import { DELTA, DIRECTIONS, GRID_SIZE } from '../types';
+import type { Direction, Grid, Placement, Rng } from '../types';
+import { shuffle } from '../../../core/rng';
 
 const DEFAULT_MAX_ATTEMPTS = 200;
 

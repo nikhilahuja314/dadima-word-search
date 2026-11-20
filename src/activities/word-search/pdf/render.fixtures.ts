@@ -1,4 +1,4 @@
-import { GRID_SIZE, type Grid, type Puzzle } from '../core/types';
+import { GRID_SIZE, type Grid, type Puzzle } from '../types';
 
 const FILLER = 'QXZJKVBWPYGFMHDLCUSRNTOAIE';
 

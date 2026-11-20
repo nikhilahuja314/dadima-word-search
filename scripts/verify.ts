@@ -6,10 +6,10 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { PDFDocument, StandardFonts } from 'pdf-lib';
-import blocklistData from '../src/grid/blocklist.json';
-import { generatePuzzles } from '../src/generate';
-import { LAYOUT, computeLayout, renderPdf } from '../src/pdf/render';
-import type { Puzzle } from '../src/core/types';
+import blocklistData from '../src/activities/word-search/grid/blocklist.json';
+import { generatePuzzles } from '../src/activities/word-search/generate';
+import { LAYOUT, computeLayout, renderPdf } from '../src/activities/word-search/pdf/render';
+import type { Puzzle } from '../src/activities/word-search/types';
 
 const SEEDS = 20;
 const PER_BATCH = 50;

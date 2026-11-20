@@ -1,5 +1,5 @@
-import { randInt } from '../core/rng';
-import type { Grid, Rng } from '../core/types';
+import { randInt } from '../../../core/rng';
+import type { Grid, Rng } from '../types';
 import { findBlocklisted, findOccurrences } from './scan';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MAX_WORD_LEN, MIN_WORD_LEN } from '../src/core/types.ts';
+import { MAX_WORD_LEN, MIN_WORD_LEN } from '../src/activities/word-search/types.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const RAW_FILE = 'data/raw/wordfreq-en-top20000.txt';
@@ -384,9 +384,12 @@ export function build(): BuildResult {
 function main(): void {
   const { words, blocklist, stats } = build();
   for (const [stage, dropped] of stats) console.log(`${stage.padEnd(36)} -${dropped}`);
-  writeFileSync(resolve(ROOT, 'src/words/words.json'), JSON.stringify(words, null, 2) + '\n');
   writeFileSync(
-    resolve(ROOT, 'src/grid/blocklist.json'),
+    resolve(ROOT, 'src/activities/word-search/words/words.json'),
+    JSON.stringify(words, null, 2) + '\n',
+  );
+  writeFileSync(
+    resolve(ROOT, 'src/activities/word-search/grid/blocklist.json'),
     JSON.stringify(blocklist, null, 2) + '\n',
   );
   console.log(`final word count: ${words.length}`);

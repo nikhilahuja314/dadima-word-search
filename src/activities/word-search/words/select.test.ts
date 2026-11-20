@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { createRng, randInt } from '../core/rng';
-import { MAX_WORD_LEN, MIN_WORD_LEN, WORDS_PER_PUZZLE } from '../core/types';
+import { createRng, randInt } from '../../../core/rng';
+import { MAX_WORD_LEN, MIN_WORD_LEN, WORDS_PER_PUZZLE } from '../types';
 import { createWordPool, wordsNeeded } from './select';
 
 /** Length weights for 4..12, skewed towards 5-8 letters. */

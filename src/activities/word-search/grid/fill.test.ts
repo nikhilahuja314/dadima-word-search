@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { createRng } from '../core/rng';
-import { GRID_SIZE } from '../core/types';
-import type { Grid } from '../core/types';
+import { createRng } from '../../../core/rng';
+import { GRID_SIZE } from '../types';
+import type { Grid } from '../types';
 import { fillAndValidate, fillGrid, validatePuzzle } from './fill';
 import { placeWords } from './place';
 import { findBlocklisted } from './scan';

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import blocklist from '../grid/blocklist.json';
-import { MAX_WORD_LEN, MIN_WORD_LEN } from '../core/types.ts';
+import { MAX_WORD_LEN, MIN_WORD_LEN } from '../types';
 import { WORD_BANK } from './bank.ts';
 
 const bank = new Set(WORD_BANK);
