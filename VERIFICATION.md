@@ -13,7 +13,7 @@ Date: 2026-11-20. Verifier: independent agent (did not write the S2-S8 code). St
 | 5. Home print at "Actual size" on A4 | PENDING (human step, Nikhil / family) |
 
 No bugs found in the application code (generator, validator, PDF renderer). Changes made: `data/exclude.txt`,
-`CUTOFF` in `scripts/build-words.ts` (7500 -> 8300), regenerated `src/words/words.json`, new `scripts/verify.ts`
+`CUTOFF` in `scripts/build-words.ts` (7500 -> 8300), regenerated `src/activities/word-search/words/words.json`, new `scripts/verify.ts`
 plus a `verify` script in `package.json`.
 
 ## 1. Check, build, timing
@@ -69,7 +69,7 @@ PASS above is meaningful.
 
 ## 4. Word bank vetting
 
-Read all 1,553 words of the original `src/words/words.json`. Policy applied:
+Read all 1,553 words of the original `src/activities/word-search/words/words.json`. Policy applied:
 
 - US spellings dropped (UK/Australian kept where present): CENTER, COLOR, FAVOR, FAVORITE, FLAVOR, GRAY, HARBOR, HUMOR,
   JEWELRY, NEIGHBOR, NEIGHBORHOOD, THEATER, APOLOGIZE, TIRE. FAVOUR, FAVOURITE, GREY and THEATRE remain. The
@@ -138,7 +138,7 @@ SUBURBAN TAMPA TERRIBLY TERRITORIAL THEOLOGY TRANSGENDER VELOCITY VERBAL VIOLATE
 ## 5. Pending (human step)
 
 Print one page at home on A4 at "Actual size" (not "Fit to page"). Confirm the letters are comfortably large and the
-grid spacing leaves room for pencil circles; adjust `LAYOUT` in `src/pdf/render.ts` if needed. Also still to do after
+grid spacing leaves room for pencil circles; adjust `LAYOUT` in `src/activities/word-search/pdf/render.ts` if needed. Also still to do after
 pushing: confirm the GitHub Pages deployment (S9 note). Not verified here: real browser (Chrome/Safari/Edge) behaviour of the UI.
 
 ## How to re-run

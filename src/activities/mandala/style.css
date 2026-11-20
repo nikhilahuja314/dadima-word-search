@@ -1,0 +1,14 @@
+/* Styles for the mandala preview. Class names are prefixed md- to stay scoped. */
+
+.md-preview {
+  max-width: 420px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #d9cfbc;
+}
+
+.md-preview svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

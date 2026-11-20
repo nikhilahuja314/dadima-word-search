@@ -1,7 +1,7 @@
-# Word Search Puzzles for Dadima
+# Activities for Dadima
 
-A small web page that makes printable word search puzzles as a PDF. Pick how many puzzles (1 to 50),
-press **Make puzzles**, then print the PDF. Everything runs in the browser; there is no server.
+A small web page that makes printable activities as a PDF. The home screen lists the activities
+(currently word search); pick one, choose how many pages, press the big button, then print the PDF. Everything runs in the browser; there is no server.
 
 Live site: https://YOUR-USERNAME.github.io/dadima-wordsearch-generator/ (placeholder, update after the first deploy)
 
@@ -15,6 +15,26 @@ pnpm check        # typecheck + lint + format check + tests
 pnpm build        # static site in dist/
 pnpm preview      # serve dist/ locally
 ```
+
+## Layout
+
+```
+src/
+  shell/          home screen, hash routing (#/word-search), shared "how many + make + download" page
+  core/           activity-agnostic helpers: seeded RNG, A4 page size
+  activities/
+    types.ts      the Activity contract every activity implements
+    registry.ts   list of activities shown on the home screen
+    word-search/  everything word-search: words, grid, PDF renderer, preview, styles
+```
+
+## Adding an activity
+
+1. Create `src/activities/<id>/index.ts` exporting an `Activity` (see `src/activities/types.ts`):
+   id, title, tagline, intro, icon SVG, noun, counts, and `make(count)` returning the PDF bytes plus a
+   `renderPreview(container)` function.
+2. Keep its generator, PDF renderer, preview and `style.css` (class names prefixed) inside that folder.
+3. Add it to `ACTIVITIES` in `src/activities/registry.ts`. The shell does the rest.
 
 ## Deploying
 
@@ -40,4 +60,4 @@ See `data/SOURCES.md` for the full provenance.
 Word-frequency data from `wordfreq` (Robyn Speer, https://github.com/rspeer/wordfreq), which combines
 Google Books Ngrams, Wikipedia, OpenSubtitles, SUBTLEX, the Leeds Internet Corpus, ParaCrawl and
 others, used under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The derived
-`src/words/words.json` is a filtered subset of that list and is shared under the same licence.
+`src/activities/word-search/words/words.json` is a filtered subset of that list and is shared under the same licence.

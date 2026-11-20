@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
-import { renderPdf } from '../src/pdf/render';
-import { fixturePuzzles } from '../src/pdf/render.fixtures';
+import { renderPdf } from '../src/activities/word-search/pdf/render';
+import { fixturePuzzles } from '../src/activities/word-search/pdf/render.fixtures';
 
 const bytes = await renderPdf(fixturePuzzles());
 writeFileSync('sample.pdf', bytes);
