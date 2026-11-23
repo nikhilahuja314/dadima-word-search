@@ -22,6 +22,10 @@ const MAX_TOTAL_LETTERS = 90;
 const MIN_LEN = 4;
 const MAX_TRIES = 50;
 
+/** Easter egg: the chance that a drawn set is seeded with EASTER_EGG_WORD. */
+export const EASTER_EGG_CHANCE = 0.05;
+export const EASTER_EGG_WORD = 'NIKHIL';
+
 export function wordsNeeded(puzzleCount: number): number {
   return puzzleCount * WORDS_PER_PUZZLE;
 }
@@ -29,12 +33,14 @@ export function wordsNeeded(puzzleCount: number): number {
 /**
  * Greedily builds one set from a pre-shuffled candidate list. Each word is accepted only if
  * rules 2-4 stay satisfiable for the remaining slots. Returns null if the pass falls short.
+ * `forced` words are placed first and count towards every rule, so the rest of the set is
+ * chosen around them.
  */
-function greedyPass(candidates: readonly string[]): string[] | null {
-  const chosen: string[] = [];
-  let letters = 0;
-  let longCount = 0;
-  let shortCount = 0;
+function greedyPass(candidates: readonly string[], forced: readonly string[]): string[] | null {
+  const chosen: string[] = [...forced];
+  let letters = forced.reduce((n, w) => n + w.length, 0);
+  let longCount = forced.filter((w) => w.length >= LONG_LEN).length;
+  let shortCount = forced.filter((w) => w.length <= SHORT_LEN).length;
 
   for (const word of candidates) {
     const len = word.length;
@@ -75,8 +81,9 @@ export function createWordPool(bank: readonly string[]): WordPool {
   return {
     drawSet(rng) {
       if (available.length >= WORDS_PER_PUZZLE) {
+        const forced = rng() < EASTER_EGG_CHANCE ? [EASTER_EGG_WORD] : [];
         for (let attempt = 0; attempt < MAX_TRIES; attempt++) {
-          const set = greedyPass(shuffle(rng, available));
+          const set = greedyPass(shuffle(rng, available), forced);
           if (set) {
             const taken = new Set(set);
             available = available.filter((w) => !taken.has(w));
